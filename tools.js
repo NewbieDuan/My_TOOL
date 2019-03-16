@@ -377,3 +377,36 @@ Date.prototype.Format = function(fmt){
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
     return fmt;
 };
+
+//表单提交下载文件
+$form(url, params) {
+	let form = document.createElement("form");
+	form.action = url;
+	form.method = "post";
+	// form.target = "downLoadIframe";
+	form.target = "_blank";
+	form.acceptCharset = "UTF-8";
+	form.enctype = "application/x-www-form-urlencoded";
+	form.style.height = "0px";
+	form.style.width = "0px";
+	form.style.display = "none";
+	for (let key in params) {
+		let input = document.createElement("input");
+		input.name = key;
+		input.value = params[key];
+		form.appendChild(input);
+	}
+	// var downLoadIframe = document.getElementById("downLoadIframe");
+	// if (!downLoadIframe) {
+	//   downLoadIframe = document.createElement("iframe");
+	//   downLoadIframe.id = "downLoadIframe";
+	//   downLoadIframe.name = "downLoadIframe";
+	// }
+	// document.body.appendChild(downLoadIframe);
+	// downLoadIframe.contentDocument.body.append(form);
+	// form.submit();
+	// downLoadIframe.contentDocument.body.removeChild(form);
+	document.body.appendChild(form);
+	form.submit();
+	document.body.removeChild(form);
+}
