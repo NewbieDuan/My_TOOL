@@ -1,4 +1,3 @@
-# git_project
-this is my first git project
-modify one
-# remote modify 
+# front-end tool
+用javascript原生语法封装的常用函数
+
