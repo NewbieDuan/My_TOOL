@@ -380,6 +380,10 @@ Date.prototype.Format = function(fmt){
 
 //数组扁平化
 var flatArr=arr=>arr.reduce((old,cur)=>old.concat(Array.isArray(cur)?flatArr(cur):cur),[])
+//简单的数组扁平化直接采用toString和split结合
+var arr = [1,2,[3,4],[5,6,7]]
+arr.toSting().split(',')
+
 
 //表单提交下载文件
 $form(url, params) {
