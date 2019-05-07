@@ -378,6 +378,9 @@ Date.prototype.Format = function(fmt){
     return fmt;
 };
 
+//数组扁平化
+var flatArr=arr=>arr.reduce((old,cur)=>old.concat(Array.isArray(cur)?flatArr(cur):cur),[])
+
 //表单提交下载文件
 $form(url, params) {
 	let form = document.createElement("form");
