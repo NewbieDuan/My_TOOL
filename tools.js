@@ -417,3 +417,50 @@ $form(url, params) {
 	form.submit();
 	document.body.removeChild(form);
 }
+
+// 获取不到文件名
+downFileRequst(url) {
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
+            url = API[url].host+API[url].url;
+            req.open('get', url, true);
+            req.responseType = "blob";
+            req.onreadystatechange = () => {
+                // readyState == 4说明请求已完成
+                if (req.readyState === 4) {
+                    const data = req.response;
+                    // 获取文件名
+                    const content = req.getResponseHeader('Content-Disposition');
+                    const fileName = "111.xlsx";
+                    if (req.status === 200 || req.status === 304) {
+                        resolve({data, fileName});
+                    }
+                    else {
+                        reject(data);
+                    }
+                }
+            };
+            // 发送数据
+            req.send();
+        });
+    },
+    downFile11(url){
+        this.downFileRequst(url).then(res=>{
+             const blob = res.data;//new Blob([res],{type:"application/octet-stream;charset=ISO-8859-1"});
+                console.log('downFile',blob)
+                //创建a标签元素
+                let eleLink = document.createElement("a");
+                //设置下文件名
+                eleLink.download = "1111.xlsx";
+                //隐藏
+                eleLink.style.display = "none";
+                //设置下载地址
+                eleLink.href = URL.createObjectURL(blob);
+                //添加到body节点内
+                document.body.appendChild(eleLink);
+                // 触发点击
+                eleLink.click();
+                // 然后移除
+                document.body.removeChild(eleLink)
+        }) 
+    },
