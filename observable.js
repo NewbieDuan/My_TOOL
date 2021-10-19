@@ -74,7 +74,7 @@ export default class Observable {
    * @param {String} ev
    * @param {Function} fn
    */
-  one(ev, fn) {
+  once(ev, fn) {
     var handle = (args) => {
       // fn.apply(null, args);
       fn.call(null, args);
