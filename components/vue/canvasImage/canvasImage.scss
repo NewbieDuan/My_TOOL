@@ -1,0 +1,35 @@
+.canvas-image {
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    .canvas-area {
+        flex: 1;
+        position: relative;
+        .canvasStyle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .operate-area {
+        height: 56px;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > span:last-child {
+            margin-right: 0;
+        }
+        > span {
+            font-size: 20px;
+            margin-right: 12px;
+            color: #fff;
+        }
+        > span.actived {
+            color: #0f62fe;
+        }
+    }
+}
